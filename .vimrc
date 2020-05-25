@@ -41,3 +41,8 @@ set noruler
 " set laststatus=0
 set mouse=a
 set noerrorbells visualbell t_vb=
+
+" Copy Paste Stuff
+inoremap <C-v> <ESC>"+pa
+vnoremap <C-c> "+y
+vnoremap <C-x> "+d
