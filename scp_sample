@@ -1,0 +1,36 @@
+#!/bin/bash
+scp=false
+root=false
+down=false
+while getopts ":srd" opt; do
+    case $opt in 
+        s) scp=true ;;
+        r) root=true ;;
+        d) down=true ;;
+       \?) echo "Usage: scp_sample [-s (scp)] [-r (root)] [-d (down)] source target"; exit 1;;
+    esac
+done
+
+remote="[username]@[remote]"
+
+if [ "$scp" = "false" ]; then
+    ssh $remote $@
+    exit 1
+fi
+
+shift $(( OPTIND - 1 ))
+
+local="./"
+if $root; then
+    remote+=":/"
+else
+    remote+=":~/"
+fi
+
+if $down; then
+    rsync -va -e ssh --exclude={'__pycache__'} "$remote$1" "$local$2"
+    # scp -r "$remote$1" "$local$2"
+else
+    rsync -va -e ssh --exclude={'__pycache__','*.ipynb','*.png','.git*'} "$local$1" "$remote$2"
+    # scp -r "$local$1" "$remote$2"
+fi
