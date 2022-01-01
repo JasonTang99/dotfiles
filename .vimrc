@@ -87,4 +87,6 @@ Plugin 'preservim/nerdtree'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-
+if &term == "screen"
+set t_Co=256
+endif
