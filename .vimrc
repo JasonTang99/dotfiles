@@ -1,5 +1,5 @@
-set nocompatible              " required
-filetype off                  " required
+set nocompatible
+filetype off
 set scrolloff=5
 
 set splitbelow
@@ -21,9 +21,7 @@ nnoremap <space> za
 " Lightline settings
 set laststatus=2
 set noshowmode
-let g:lightline = {
-	\ 'colorscheme': 'powerline',
-	\ }
+let g:lightline = {'colorscheme': 'powerline'}
 
 " PEP 8
 highlight BadWhitespace ctermbg=red guibg=darkred
