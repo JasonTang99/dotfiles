@@ -1,6 +1,7 @@
 sudo apt install git
 git config --global user.email "1999jasontang@gmail.com"
 git config --global user.name "JasonTang99"
+git config --global core.editor "vim"
 
 sudo add-apt-repository universe
 sudo apt install gnome-tweaks
@@ -51,6 +52,7 @@ echo 'deb [arch=amd64 signed-by=/usr/share/keyrings/signal-desktop-keyring.gpg] 
   sudo tee -a /etc/apt/sources.list.d/signal-xenial.list
 
 sudo apt update && sudo apt install signal-desktop
+rm signal-desktop-keyring.gpg
 
 
 # Github CLI
@@ -72,3 +74,14 @@ git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 vim +PluginInstall +qall
 ~/.vim/bundle/YouCompleteMe/install.py
 
+# Unison
+sudo apt install unison unison-gtk
+sudo apt install openssh-server
+sudo systemctl status ssh
+sudo systemctl enable ssh
+
+ssh-keygen -t rsa -b 4096
+ssh-copy-id -i .ssh/id_rsa.pub jason@192.168.2.69
+
+echo 'export PATH="$PATH:$HOME/Scripts"' >> ~/.bashrc
+unison -testServer a.tmp ssh://remotehostname/a.tmp

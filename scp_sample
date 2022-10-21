@@ -1,4 +1,8 @@
 #!/bin/bash
+
+# Edit this line
+remote="[username]@[remote]"
+
 scp=false
 root=false
 down=false
@@ -10,8 +14,6 @@ while getopts ":srd" opt; do
        \?) echo "Usage: scp_sample [-s (scp)] [-r (root)] [-d (down)] source target"; exit 1;;
     esac
 done
-
-remote="[username]@[remote]"
 
 if [ "$scp" = "false" ]; then
     ssh $remote $@
