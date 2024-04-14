@@ -1,0 +1,26 @@
+#!/bin/bash
+echo "find path_A -name '*AAA*' -exec mv -t path_B {} +"
+
+exit 0
+
+del=false
+while getopts ":d" opt; do
+    case $opt in 
+        d) del=true ;;
+       \?) echo "Usage: jfind [-d (delete)] target"; exit 1;;
+    esac
+done
+shift $(( OPTIND - 1 ))
+
+if $del; then
+		echo find . -type d -name "$1" -exec rm -r {} \+
+		find . -type d -name "$1" -exec rm -r {} \+
+else
+		echo find . -type d -name "$1"
+		find . -type d -name "$1"
+fi
+
+
+exit 0
+
+

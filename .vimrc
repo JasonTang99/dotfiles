@@ -1,9 +1,12 @@
-set nocompatible
-filetype off
+set nocompatible              " required
+filetype off                  " required
 set scrolloff=5
 
 set splitbelow
 set splitright
+set mouse=a
+
+set tabstop=2
 
 " split navigations
 nnoremap <C-J> <C-W><C-J>
@@ -21,7 +24,9 @@ nnoremap <space> za
 " Lightline settings
 set laststatus=2
 set noshowmode
-let g:lightline = {'colorscheme': 'powerline'}
+let g:lightline = {
+	\ 'colorscheme': 'powerline',
+	\ }
 
 " PEP 8
 highlight BadWhitespace ctermbg=red guibg=darkred
@@ -37,7 +42,6 @@ au BufNewFile, BufRead *.py
 
 au BufRead,BufNewFile *.py,*.pyw,*.c,*.h match BadWhitespace /\s\+$/
 
-" YouCompleteMe Config
 set encoding=utf-8
 let g:ycm_autoclose_preview_window_after_completion=1
 map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
@@ -52,9 +56,12 @@ set nu
 
 " NERDTree Stuff
 nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
+nnoremap <C-n> :NERDTreeFocus<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
+
+" NERDTree modifiable
+set ma
 
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
@@ -86,6 +93,4 @@ Plugin 'preservim/nerdtree'
 call vundle#end()            " required
 filetype plugin indent on    " required
 
-if &term == "screen"
-set t_Co=256
-endif
+

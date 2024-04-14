@@ -1,0 +1,34 @@
+#!/bin/bash
+
+show_progress=false
+checksum=false
+while getopts ":pci:" opt; do
+    case $opt in 
+        p) show_progress=true ;;
+        i) included_regex=${OPTARG} ;;
+        c) checksum=true ;;
+        *) echo "Usage: rrsync [-p (show progress)] [-i included_regex] [-c (checksum)] source destination"; exit 1;;
+    esac
+done
+shift $(( OPTIND - 1 ))
+
+# Build rsync command
+rsync_cmd="rsync -a"
+if $show_progress; then
+    rsync_cmd+=" --info=progress2 --no-inc-recursive"
+fi
+if [ -n "$included_regex" ]; then
+    rsync_cmd+=" --include=\"*/\" --include=\"$included_regex\" --exclude=\"*\""
+fi
+if $checksum; then
+    rsync_cmd+=" -c"
+fi
+rsync_cmd+=" $@"
+
+# Execute rsync command
+echo $rsync_cmd
+eval "$rsync_cmd"
+
+exit 0
+
+

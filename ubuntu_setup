@@ -3,6 +3,8 @@ git config --global user.email "1999jasontang@gmail.com"
 git config --global user.name "JasonTang99"
 git config --global core.editor "vim"
 
+echo 'export PATH="$PATH:$HOME/Scripts"' >> ~/.bashrc
+
 sudo add-apt-repository universe
 sudo apt install gnome-tweaks
 
@@ -13,6 +15,7 @@ sudo apt install gnome-tweaks
 # openweather
 # spotify
 # nano system monitor
+#   https://askubuntu.com/questions/453969/how-can-i-order-gnome3-shell-extensions-at-the-top
 
 sudo snap install spotify
 sudo snap install discord
@@ -75,6 +78,7 @@ vim +PluginInstall +qall
 ~/.vim/bundle/YouCompleteMe/install.py
 
 # Unison
+# Reserve ip
 sudo apt install unison unison-gtk
 sudo apt install openssh-server
 sudo systemctl status ssh
@@ -83,5 +87,3 @@ sudo systemctl enable ssh
 ssh-keygen -t rsa -b 4096
 ssh-copy-id -i .ssh/id_rsa.pub jason@192.168.2.69
 
-echo 'export PATH="$PATH:$HOME/Scripts"' >> ~/.bashrc
-unison -testServer a.tmp ssh://remotehostname/a.tmp
